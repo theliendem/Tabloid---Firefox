@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tab-buse</title>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Rowdies:wght@300;400;700&display=swap"
+		rel="stylesheet">
+	
+	<style>
+		@font-face {
+			font-family: 'Noot';
+			src: url('Noot Regular.ttf');
+		}
+
+		@font-face {
+			font-family: 'Veritas';
+			src: url('Veritas Regular.ttf');
+		}
+
+		/* Basic styling for the popup */
+		body {
+			margin: 10px;
+			width: 450px;
+			min-height: 200px;
+			padding: 20px 20px;
+			text-align: center;
+			background-color: #0b0813;
+			font-family: 'Veritas', sans-serif;
+			text-align: center;
+			color: #efe9ff;
+			overflow-x: hidden;
+		}
+
+		* {
+			font-family: inherit;
+		}
+
+		#roast {
+			font-size: 16px;
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+
+		#tab-count {
+			margin-bottom: 10px;
+		}
+
+		#category-breakdown {
+			cursor: pointer;
+			color: #efe9ff;
+			text-decoration: underline;
+			margin-bottom: 10px;
+		}
+
+		#category-management {
+			margin-top: 20px;
+		}
+
+		hr {
+			height: 1px;
+			background-color: #8573b1;
+			border: 1px solid #8573b1;
+			border-radius: .5px;
+			margin-bottom: 20px;
+		}
+
+		h1 {
+			font-family: 'Rowdies', sans-serif;
+		}
+
+		#tabloid-h1 {
+			font-family: 'Noot', sans-serif;
+			color: #9d1b1b;
+		}
+
+		#current-tab-section {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		#current-tab-section .ctabelement {
+			flex: 1;
+		}
+
+		#current-tab-section .ctabelement * {
+			margin-bottom: 10px !important;
+		}
+
+		.current-tab-element {
+			margin: 0 !important;
+			padding: 0 !important;
+			width: 180px;
+		}
+
+		#current-tab-category {
+			font-size: 20px;
+			margin-bottom: 10px;
+		}
+
+		#current-tab-h3 {
+			margin-bottom: -13px;
+		}
+
+		h3 {
+			font-size: 24px;
+			margin: 0;
+		}
+
+		#category-list {
+			display: block;
+			border: 2px solid #8573b1;
+			width: 60%;
+			margin: 0 auto;
+			min-height: 50px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+
+		#category-list div {
+			cursor: pointer;
+			width: fit-content;
+			margin: 0 auto;
+		}
+
+		#delete-category-btn, #edit-category-btn {
+			width: 60px;
+			border-radius: 4px;
+		}
+
+		#edit-category-btn {
+			background-color: lightgreen;
+			border: 1px solid green;
+		}
+
+		#delete-category-btn {
+			background-color: lightcoral;
+			border: 1px solid red;
+		}
+
+		#tab-count {
+			margin: 15px 0;
+		}
+
+		#hr-under-current-tab-section {
+			margin-top: 30px;
+		}
+
+		button {
+			cursor: pointer;
+			background-color: #efe9ff;
+			padding: 5px 8px !important;
+			border: none;
+			border-radius: 5px;
+			color: #0b0813;
+		}
+
+		input {
+			background-color: #251c3d;
+			padding: 5px 8px !important;
+			border: none;
+			border-bottom: 2px solid #8573b1;
+			color: white;
+			border-radius: 5px;
+		}
+		
+		/* CurrentTabButton */
+		.ctbtn {
+			background-color: #efe9ff;
+			padding: 5px 8px !important;
+			border: none;
+			border-radius: 5px;
+			color: #0b0813;
+		}
+
+		/* CurrentTabInput */
+		.ctinput {
+			background-color: #251c3d;
+			padding: 5px 8px !important;
+			border: none;
+			border-bottom: 2px solid #8573b1;
+			color: white;
+			width: 165px;
+			border-radius: 5px;
+		}
+
+		.ctinput::placeholder, .ctinput::-moz-placeholder, .ctinput::-webkit-input-placeholder, .ctinput:-ms-input-placeholder {
+			color: white;
+		}
+
+		#or {
+			font-size: 20px;
+			color: #efe9ff;
+			margin: 10px;
+		}
+
+		#category-list-container {
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h1> Welcome to the <br><span id="tabloid-h1">Tabloid</span> </h1>
+	<div id="roast"></div>
+	<div id="tab-count"></div>
+	<div id="stats"></div>
+	<hr>
+	<h3 id="current-tab-h3">Current Tab</h3>
+	<p id="current-tab-category">Loading...</p>
+	
+	<div id="current-tab-section">
+		<div class="ctabelement">
+			<select id="category-dropdown" class="current-tab-element ctbtn"></select>
+			<input type="text" id="new-category-input" placeholder="Enter new category" class="current-tab-element ctinput">
+			<button id="change-category" class="current-tab-element ctbtn">Change Category</button><br>
+		</div>
+		<div class="ctabelement">
+			<p id="or">OR</p>
+		</div>
+		<div class="ctabelement">
+			<button id="uncategorize-tab" class="current-tab-element ctbtn">Uncategorize this tab</button>
+		</div>
+	</div>
+	
+	<hr id="hr-under-current-tab-section">
+	
+	<h3>Category Management</h3>
+	<div id="category-list-container">
+		<div id="category-list"></div><br>
+	</div>
+	
+	<div id="category-breakdown">Toggle category breakdown</div>
+	<div id="breakdown-list" style="display: none;"></div>
+	
+	<hr>
+
+	<h3>Domain Management</h3>
+	<div id="toggle-ignored" style="text-decoration: underline;">Toggle ignored domain management</div>
+	<div id="ignored-list" style="display: none;"></div>
+
+	<br><br><hr>
+	<p>Made by Neil Dembla</p>
+
+	<script src="popup.js"></script>
+</body>
+</html>
