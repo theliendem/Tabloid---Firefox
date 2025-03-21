@@ -210,6 +210,11 @@
 	<div id="roast"></div>
 	<div id="tab-count"></div>
 	<div id="stats"></div>
+
+	<!-- TODO: Add snoozed section that only appears when we're on snoozed
+		TODO: It should display how much time is left in the snooze, as well as a button to unsnooze the tab
+		TODO: And also options to change how long it's snoozed for -->
+
 	<hr>
 	<h3 id="current-tab-h3">Current Tab</h3>
 	<p id="current-tab-category">Loading...</p>
@@ -246,6 +251,31 @@
 
 	<br><br><hr>
 	<p>Made by Neil Dembla</p>
+
+	<!-- <script type="module">
+		// Import the functions you need from the SDKs you need
+		import { initializeApp } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-app.js";
+		import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.5.0/firebase-analytics.js";
+		// TODO: Add SDKs for Firebase products that you want to use
+		// https://firebase.google.com/docs/web/setup#available-libraries
+
+
+		// Your web app's Firebase configuration
+		// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+		const firebaseConfig = {
+			apiKey: "AIzaSyDVqI2zZAbOuVisdST8fvkUD1pgPviRXY4",
+			authDomain: "tabloid-d7be1.firebaseapp.com",
+			projectId: "tabloid-d7be1",
+			storageBucket: "tabloid-d7be1.firebasestorage.app",
+			messagingSenderId: "427096008587",
+			appId: "1:427096008587:web:13e2824add4dafa698718e",
+			measurementId: "G-8J4JL4LQEQ"
+		};
+
+		// Initialize Firebase
+		const app = initializeApp(firebaseConfig);
+		const analytics = getAnalytics(app);
+	</script> -->
 
 	<script src="popup.js"></script>
 </body>

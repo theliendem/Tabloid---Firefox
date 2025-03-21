@@ -507,6 +507,7 @@ function generateRoast(categorizedTabs, numTabs) {
 	document.getElementById("roast").innerHTML = roast;
 }
 
+// TODO: Add snoozed section that only pops up when we're on snooze
 
 document.addEventListener("DOMContentLoaded", () => {
 	// Floating modal style
@@ -519,7 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	updateCurrentTabSection();
 
-	let btns = document.getElementsByTagName("button")
+	let btns = document.getElementsByTagName("button");
 	btns = [...btns];
 	btns.forEach((button) => {
 		button.addEventListener("click", () => {
