@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Tabloid",
-	"version": "1.0.2",
+	"version": "1.1.0",
 	"description": "A browser extension that roasts you based on your tab usage, like a virtual tabloid.",
 	"permissions": [
 		"tabs",
