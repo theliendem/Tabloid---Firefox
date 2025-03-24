@@ -507,6 +507,50 @@ function generateRoast(categorizedTabs, numTabs) {
 	document.getElementById("roast").innerHTML = roast;
 }
 
+function detectSnooze() {
+	browser.storage.local.get(["snoozed"], (data) => {
+		const snoozed = data.snoozed || false;
+		if (!snoozed) return;
+
+		const snoozeTime = new Date(snoozed);
+		const now = new Date();
+		const timeDiff = snoozeTime - now;
+
+		if (timeDiff > 0) {
+			const hours = Math.floor((timeDiff / 1000) / 3600);
+			const minutes = Math.floor((timeDiff / 1000) / 60) % 60;
+			document.getElementById("time-left-in-snooze").textContent = `You're on snooze until ${snoozeTime.toLocaleTimeString()} (${hours} hours, ${minutes} minutes remaining)`;
+			document.getElementById("snoozed-section").style.display = "block";
+
+			document.getElementById("unsnooze-btn").addEventListener("click", () => {
+				browser.storage.local.set({ snoozed: false });
+			});
+
+			document.getElementById("change-snooze-btn").addEventListener("click", () => {
+				const modal = createFloatingModal(`
+					<h2>Snooze for</h2>
+					<input id='new-snooze-time' style="margin-bottom: 20px;" placeholder="No. of hours, e.g. 2" />
+					<button id='confirm-snooze'>Save</button>
+					<button id='cancel-snooze'>Cancel</button>
+				`);
+
+				document.getElementById("confirm-snooze").addEventListener("click", () => {
+					const snoozeUntilTime = document.getElementById("new-snooze-time").value;
+					const newSnoozeTime = new Date();
+					newSnoozeTime.setHours(newSnoozeTime.getHours() + parseInt(snoozeUntilTime));
+					browser.storage.local.set({ snoozed: newSnoozeTime });
+					modal.remove();
+					location.reload();
+				});
+
+				document.getElementById("cancel-snooze").addEventListener("click", () => {
+					modal.remove();
+				});
+			});
+		}
+	})
+}
+
 // TODO: Add snoozed section that only pops up when we're on snooze
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -514,18 +558,22 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.head.appendChild(style);
 
 	loadCategories();
-
+	
 	// When the popup is opened, categorize tabs and show the UI
 	categorizeTabs();
-
+	
 	updateCurrentTabSection();
+
+	detectSnooze();
 
 	let btns = document.getElementsByTagName("button");
 	btns = [...btns];
 	btns.forEach((button) => {
 		button.addEventListener("click", () => {
 			setTimeout(() => {}, 10);
-			location.reload();
+			if (!["change-snooze-btn"].includes(button.id)) {
+				location.reload();
+			}
 		});
 	});
 });

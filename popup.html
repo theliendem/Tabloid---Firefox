@@ -190,7 +190,7 @@
 			border-radius: 5px;
 		}
 
-		.ctinput::placeholder, .ctinput::-moz-placeholder, .ctinput::-webkit-input-placeholder, .ctinput:-ms-input-placeholder {
+		.ctinput::placeholder, .ctinput::-moz-placeholder, .ctinput::-webkit-input-placeholder {
 			color: white;
 		}
 
@@ -203,6 +203,11 @@
 		#category-list-container {
 			margin-top: 20px;
 		}
+
+		#snoozed-section {
+			display: none;
+			margin-bottom: 20px;
+		}
 	</style>
 </head>
 <body>
@@ -214,6 +219,13 @@
 	<!-- TODO: Add snoozed section that only appears when we're on snoozed
 		TODO: It should display how much time is left in the snooze, as well as a button to unsnooze the tab
 		TODO: And also options to change how long it's snoozed for -->
+	<div id="snoozed-section">
+		<hr>
+		<h3>This extension is snoozed</h3>
+		<p id="time-left-in-snooze">Time left: 1 hour 30 minutes</p>
+		<button id="unsnooze-btn">Unsnooze</button>
+		<button id="change-snooze-btn">Change snooze time</button>
+	</div>
 
 	<hr>
 	<h3 id="current-tab-h3">Current Tab</h3>
