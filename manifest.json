@@ -9,11 +9,6 @@
 		"scripting",
 		"activeTab"
 	],
-	"host_permissions": [
-		"<all_urls>",
-		"http://fonts.googleapis.com/",
-		"https://fonts.googleapis.com/"
-	],
 	"action": {
 		"default_popup": "popup.html",
 		"default_icon": {
